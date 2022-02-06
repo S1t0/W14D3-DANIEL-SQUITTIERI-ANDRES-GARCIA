@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useItems } from '../../hooks/useItems';
 
 const GridForm = styled.div`
   display: flex;
+  padding: 15px;
+  flex-direction: column;
+  justify-content: 'center';
+  color: white;
   & > div {
-    padding: 0 5px;
+    padding: 10px 5px;
     p {
-      margin: 0 0 5px 0;
+      margin: 0 0 5px 5px;
+    }
+    input {
+      background-color: #d3d2d2;
     }
   }
 `;
@@ -36,7 +43,15 @@ export const AddItemForm = () => {
   });
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
+    <form
+      onSubmit={handleSubmit(submit)}
+      style={{
+        marginTop: 20,
+        display: 'inline-block',
+        justifyContent: 'center',
+        flexDirection: 'column',
+      }}
+    >
       <GridForm>
         <div>
           <p>Wishlist Item Name</p>
@@ -56,7 +71,7 @@ export const AddItemForm = () => {
           <input {...register('web')} />
         </div>
       </GridForm>
-      <div style={{ marginTop: 20 }}>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <button onClick={submit}>Save data</button>
       </div>
     </form>

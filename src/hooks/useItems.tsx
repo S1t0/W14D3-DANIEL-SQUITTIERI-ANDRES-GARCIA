@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
+import { updateTypePredicateNodeWithModifier } from 'typescript';
 import { v4 as uuidv4 } from 'uuid'; // IMPORTANTE
+import { validate_url } from '../lib/validate_url';
 
 const ItemsContext = React.createContext();
 
@@ -10,13 +12,20 @@ export const ItemsProvider: React.FC<{ children: React.Node }> = ({ children }) 
 
 export const useItems = () => {
   const { items, setItems } = useContext(ItemsContext);
-
   return {
     items,
     add_item: (item) => {
-      console.log('From context', item);
+      const id=uuidv4();
+      const newItem={...item,id};
+      const newArray=[...items,newItem];
+      setItems(newArray);
+      console.log('From context', newArray);
     },
-    clear: () => {},
-    delete_item: (id: string) => {},
+    clear: () => {
+      setItems([]);
+    },
+    delete_item: (id: string) => {
+      console.log(items[5]);
+    },
   };
 };

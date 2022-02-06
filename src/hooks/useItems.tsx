@@ -19,13 +19,16 @@ export const useItems = () => {
       const newItem = { ...item, id };
       const newArray = [...items, newItem];
       setItems(newArray);
-      console.log('From context', newArray);
+      const valUrl=validate_url(item.web);
+      //console.log(valUrl);
     },
     clear: () => {
       setItems([]);
     },
     delete_item: (id: string) => {
-      console.log('DELETE ITEM:', id);
+      const deleteItem= items.filter(e=>e.id!==id);
+      setItems(deleteItem);
+      
     },
   };
 };

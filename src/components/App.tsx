@@ -11,12 +11,19 @@ const Styledh2 = styled.h2`
   font-size: 3rem;
 `;
 
+const StyledBody = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+`;
+
 export const App = () => {
   return (
     <ItemsProvider>
       <div style={{ display: 'flex' }}></div> <Styledh2>CORE Wishlist</Styledh2>
-      <AddItemForm />
-      <ItemsList />
+      <StyledBody>
+        <AddItemForm />
+        <ItemsList />
+      </StyledBody>
     </ItemsProvider>
   );
 };

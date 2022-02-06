@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { updateTypePredicateNodeWithModifier } from 'typescript';
 import { v4 as uuidv4 } from 'uuid'; // IMPORTANTE
 import { validate_url } from '../lib/validate_url';
 
@@ -19,16 +18,15 @@ export const useItems = () => {
       const newItem = { ...item, id };
       const newArray = [...items, newItem];
       setItems(newArray);
-      const valUrl=validate_url(item.web);
+      const valUrl = validate_url(item.web);
       //console.log(valUrl);
     },
     clear: () => {
       setItems([]);
     },
     delete_item: (id: string) => {
-      const deleteItem= items.filter(e=>e.id!==id);
+      const deleteItem = items.filter((e) => e.id !== id);
       setItems(deleteItem);
-      
     },
   };
 };

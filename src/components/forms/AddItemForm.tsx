@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useItems } from '../../hooks/useItems';
+import { Button } from '../utils/Button';
 
 const GridForm = styled.div`
   display: flex;
@@ -13,23 +14,27 @@ const GridForm = styled.div`
     padding: 10px 5px;
     p {
       margin: 0 0 5px 5px;
+      font-size: 1.2rem;
     }
     input {
       background-color: #d3d2d2;
+      width: 100%;
+      padding: 5px;
     }
   }
 `;
 
-const ErrorMessageText = styled.p`
-  margin: 0;
+const ErrorMessageText = styled.div`
+  margin: 5px;
   color: red;
+  font-size: 0.9rem;
 `;
 
 const ErrorMessage = ({ field, state }) => {
   if (state.errors[field]) {
     return <ErrorMessageText>{state.errors[field].message}</ErrorMessageText>;
   } else {
-    return <></>;
+    return <ErrorMessageText>{''}</ErrorMessageText>;
   }
 };
 
@@ -54,25 +59,37 @@ export const AddItemForm = () => {
     >
       <GridForm>
         <div>
-          <p>Wishlist Item Name</p>
-          <input {...register('item', { required: 'Indica el nombre del artículo' })} />
+          <p>Nombre:</p>
+          <input
+            {...register('item', { required: 'Indica el nombre del artículo' })}
+            placeholder="Nombre"
+          />
           <ErrorMessage state={formState} field="item" />
         </div>
         <div>
-          <p>Price</p>
-          <input {...register('price', { required: 'Indica el precio del artículo' })} />
+          <p>Precio:</p>
+          <input
+            {...register('price', { required: 'Indica el precio del artículo' })}
+            placeholder="Precio"
+          />
+          <ErrorMessage state={formState} field="price" />
         </div>
         <div>
-          <p>Quantity</p>
-          <input {...register('quantity', { required: 'Indica la cantidad del artículo' })} />
+          <p>Cantidad:</p>
+          <input
+            {...register('quantity', { required: 'Indica la cantidad del artículo' })}
+            placeholder="Cantidad"
+          />
+          <ErrorMessage state={formState} field="quantity" />
         </div>
         <div>
-          <p>Sitio web</p>
-          <input {...register('web')} />
+          <p>Sitio web:</p>
+          <input {...register('web')} placeholder="Sitio web" />
+          <ErrorMessage state={formState} field="web" />
         </div>
       </GridForm>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button onClick={submit}>Save data</button>
+        <Button onClick={submit}>Guardar</Button>
       </div>
     </form>
   );

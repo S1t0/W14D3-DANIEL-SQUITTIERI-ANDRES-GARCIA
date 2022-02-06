@@ -15,9 +15,9 @@ export const useItems = () => {
   return {
     items,
     add_item: (item) => {
-      const id=uuidv4();
-      const newItem={...item,id};
-      const newArray=[...items,newItem];
+      const id = uuidv4();
+      const newItem = { ...item, id };
+      const newArray = [...items, newItem];
       setItems(newArray);
       console.log('From context', newArray);
     },
@@ -25,7 +25,7 @@ export const useItems = () => {
       setItems([]);
     },
     delete_item: (id: string) => {
-      console.log(items[5]);
+      console.log('DELETE ITEM:', id);
     },
   };
 };

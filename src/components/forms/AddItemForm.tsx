@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
+import { useItems } from '../../hooks/useItems';
 
 const GridForm = styled.div`
   display: flex;
@@ -26,35 +27,38 @@ const ErrorMessage = ({ field, state }) => {
 };
 
 export const AddItemForm = () => {
+  const { add_item } = useItems();
+
   const { register, handleSubmit, formState, reset } = useForm();
 
   const submit = handleSubmit(async (data) => {
-    console.log("SUBMITING FORM");
+    add_item(data);
   });
 
   return (
-    <div>
+    <form onSubmit={handleSubmit(submit)}>
       <GridForm>
         <div>
           <p>Wishlist Item Name</p>
-          <input
-            {...register("item", { required: "Indica el nombre del artículo" })}
-          />
+          <input {...register('item', { required: 'Indica el nombre del artículo' })} />
           <ErrorMessage state={formState} field="item" />
         </div>
         <div>
           <p>Price</p>
+          <input {...register('price', { required: 'Indica el precio del artículo' })} />
         </div>
         <div>
           <p>Quantity</p>
+          <input {...register('quantity', { required: 'Indica la cantidad del artículo' })} />
         </div>
         <div>
           <p>Sitio web</p>
+          <input {...register('web')} />
         </div>
       </GridForm>
       <div style={{ marginTop: 20 }}>
         <button onClick={submit}>Save data</button>
       </div>
-    </div>
+    </form>
   );
 };

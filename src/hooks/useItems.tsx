@@ -1,17 +1,11 @@
-import React, { useState, useContext } from "react";
-import { v4 as uuidv4 } from "uuid"; // IMPORTANTE
+import React, { useState, useContext } from 'react';
+import { v4 as uuidv4 } from 'uuid'; // IMPORTANTE
 
 const ItemsContext = React.createContext();
 
-export const ItemsProvider: React.FC<{ children: React.Node }> = ({
-  children,
-}) => {
+export const ItemsProvider: React.FC<{ children: React.Node }> = ({ children }) => {
   const [items, setItems] = useState([]);
-  return (
-    <ItemsContext.Provider value={{ items, setItems }}>
-      {children}
-    </ItemsContext.Provider>
-  );
+  return <ItemsContext.Provider value={{ items, setItems }}>{children}</ItemsContext.Provider>;
 };
 
 export const useItems = () => {
@@ -19,7 +13,9 @@ export const useItems = () => {
 
   return {
     items,
-    add_item: (item) => {},
+    add_item: (item) => {
+      console.log('From context', item);
+    },
     clear: () => {},
     delete_item: (id: string) => {},
   };

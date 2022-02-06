@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Box = styled.div`
   border: 1px solid red;
@@ -33,9 +33,11 @@ export const Item = ({ item: { id, item, price, quantity, web } }) => {
 export const ItemsList = () => {
   return (
     <div>
-      <button type="button" onClick={()=> console.log('clear list')}>Clear List</button>
+      <button type="button" onClick={() => console.log('clear list')}>
+        Clear List
+      </button>
       <p>There are 0 items in the list</p>
-      <Item />
+      <Item item={{ id: 1, item: 'Hojas', price: 1.5, quantity: 500, web: 'Page' }} />
     </div>
   );
 };

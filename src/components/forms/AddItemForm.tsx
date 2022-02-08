@@ -10,6 +10,7 @@ const GridForm = styled.div`
   flex-direction: column;
   justify-content: 'center';
   color: white;
+  text-shadow: 0px 0px 2px black;
   & > div {
     padding: 10px 5px;
     p {
@@ -84,7 +85,17 @@ export const AddItemForm = () => {
         </div>
         <div>
           <p>Sitio web:</p>
-          <input {...register('web')} placeholder="Sitio web" />
+          <input
+            {...register('web', {
+              validate: {
+                checkUrl: async (url) =>
+                  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(
+                    url
+                  ) || 'Url no válida',
+              },
+            })}
+            placeholder="Sitio web"
+          />
           <ErrorMessage state={formState} field="web" />
         </div>
       </GridForm>

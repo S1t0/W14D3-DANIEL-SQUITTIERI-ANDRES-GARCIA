@@ -18,8 +18,6 @@ export const useItems = () => {
       const newItem = { ...item, id };
       const newArray = [...items, newItem];
       setItems(newArray);
-      const valUrl = validate_url(item.web);
-      //console.log(valUrl);
     },
     clear: () => {
       setItems([]);

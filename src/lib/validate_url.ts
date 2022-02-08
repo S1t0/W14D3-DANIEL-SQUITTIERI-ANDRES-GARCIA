@@ -1,16 +1,6 @@
-import React from "react";
-import Axios from "axios"; // IMPORTANTE
+import axios from "axios";
 
-export const validate_url = async (url: string): Promise<boolean> => {
-  console.log(url);
-  try {
-    //axios.get(url)
-    await Axios.get(url)
-    console.log("Url valida");
-    return true;
-
-  } catch (error) {
-    console.log("Url no valida");
-    return false;
-  }
+export const validate_url = (url) => {
+  let expresion = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)
+  return expresion.test(url)
 };

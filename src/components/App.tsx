@@ -14,6 +14,7 @@ const Styledh2 = styled.h2`
 const StyledBody = styled.div`
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-around;
 `;
 
 export const App = () => {

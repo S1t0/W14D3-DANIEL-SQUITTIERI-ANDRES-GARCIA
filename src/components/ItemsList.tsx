@@ -11,6 +11,7 @@ const StyledP = styled.div`
   font-family: 'Helvetica Neue';
   color: white;
   text-shadow: 0px 0px 2px black;
+  display: inline-block
 `;
 
 const StyleTitle = styled.div`

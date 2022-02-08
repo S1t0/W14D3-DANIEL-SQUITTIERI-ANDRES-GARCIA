@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Button } from './utils/Button';
 
 const Box = styled.div`
   border: 1px solid black;
@@ -19,13 +20,11 @@ const Box = styled.div`
   }
 `;
 
-
-
 export const Item = ({ item: { id, item, price, quantity, web }, onDelete }) => {
   return (
     <Box>
       <p>
-        <b>Item  name:</b> {item} (id:{id})
+        <b>Item name:</b> {item} (id:{id})
       </p>
       <p>
         <b>Price:</b> {price}
@@ -36,7 +35,7 @@ export const Item = ({ item: { id, item, price, quantity, web }, onDelete }) => 
       <p>
         <b>Web:</b> <a href={web}>{web}</a>
       </p>
-      <button onClick={() => onDelete()}>Delete this item</button>
+      <Button onClick={() => onDelete()}>Delete</Button>
     </Box>
   );
 };

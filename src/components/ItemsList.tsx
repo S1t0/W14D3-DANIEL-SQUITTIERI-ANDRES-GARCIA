@@ -24,14 +24,16 @@ export const ItemsList = () => {
   const { items, delete_item, clear } = useItems();
 
   return (
-    <StyleTitle>
-      <StyledP>
-        There are <strong>{items.length}</strong> items in the list
-      </StyledP>
-      <Button onClick={() => clear()}>Clear List</Button>
+    <div>
+      <StyleTitle>
+        <StyledP>
+          There are <strong>{items.length}</strong> items in the list
+        </StyledP>
+        <Button onClick={() => clear()}>Clear List</Button>
+      </StyleTitle>
       {items.map((e) => (
         <Item key={e.id} item={e} onDelete={() => delete_item(e.id)} />
       ))}
-    </StyleTitle>
+    </div>
   );
 };

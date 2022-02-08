@@ -1,6 +1,9 @@
-import axios from "axios";
+import Axios from "axios"; // IMPORTANTE
 
-export const validate_url = (url) => {
-  let expresion = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)
-  return expresion.test(url)
+export const validate_url = (url: string): boolean => {
+  console.log(url);
+  const expresion=/https:\/\/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+  const comprobacion=expresion.test(url);
+  return comprobacion;
+
 };

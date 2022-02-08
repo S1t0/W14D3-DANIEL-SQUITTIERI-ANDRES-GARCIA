@@ -1,16 +1,16 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useForm } from 'react-hook-form';
-import { useItems } from '../../hooks/useItems';
-import { Button } from '../utils/Button';
+import React from "react";
+import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import { useItems } from "../../hooks/useItems";
+import { Button } from "../utils/Button";
+import { validate_url } from "../../lib/validate_url";
 
 const GridForm = styled.div`
   display: flex;
   padding: 15px;
   flex-direction: column;
-  justify-content: 'center';
+  justify-content: "center";
   color: white;
-  text-shadow: 0px 0px 2px black;
   & > div {
     padding: 10px 5px;
     p {
@@ -32,10 +32,11 @@ const ErrorMessageText = styled.div`
 `;
 
 const ErrorMessage = ({ field, state }) => {
+  console.log(state.errors)
   if (state.errors[field]) {
     return <ErrorMessageText>{state.errors[field].message}</ErrorMessageText>;
   } else {
-    return <ErrorMessageText>{''}</ErrorMessageText>;
+    return <ErrorMessageText>{""}</ErrorMessageText>;
   }
 };
 
@@ -53,16 +54,23 @@ export const AddItemForm = () => {
       onSubmit={handleSubmit(submit)}
       style={{
         marginTop: 20,
-        display: 'inline-block',
-        justifyContent: 'center',
-        flexDirection: 'column',
+        display: "inline-block",
+        justifyContent: "center",
+        flexDirection: "column",
       }}
     >
       <GridForm>
         <div>
           <p>Nombre:</p>
           <input
-            {...register('item', { required: 'Indica el nombre del artículo' })}
+            {...register("item", {
+              required: "Indica el nombre del artículo",
+              maxLength: {
+                value: 20,
+                message:
+                  "Nombre del articulo no puede ser mayor de 20 caracteres",
+              },
+            })}
             placeholder="Nombre"
           />
           <ErrorMessage state={formState} field="item" />
@@ -70,7 +78,14 @@ export const AddItemForm = () => {
         <div>
           <p>Precio:</p>
           <input
-            {...register('price', { required: 'Indica el precio del artículo' })}
+            type="number"
+            {...register("price", {
+              required: "Indica el precio del artículo",
+              min: {
+                value: 1,
+                message: "El precio debe de ser mayor que 0",
+              },
+            })}
             placeholder="Precio"
           />
           <ErrorMessage state={formState} field="price" />
@@ -78,28 +93,33 @@ export const AddItemForm = () => {
         <div>
           <p>Cantidad:</p>
           <input
-            {...register('quantity', { required: 'Indica la cantidad del artículo' })}
+          type="number"
+            {...register("quantity", {
+              required: "Indica la cantidad del artículo",
+              min: {
+                value: 1,
+                message: "El precio debe de ser mayor que 0",
+              },
+            })}
             placeholder="Cantidad"
           />
           <ErrorMessage state={formState} field="quantity" />
         </div>
         <div>
           <p>Sitio web:</p>
-          <input
-            {...register('web', {
-              validate: {
-                checkUrl: async (url) =>
-                  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(
-                    url
-                  ) || 'Url no válida',
-              },
-            })}
-            placeholder="Sitio web"
-          />
+          <input {...register("web" ,{ 
+            required: true,
+            validate:{
+              checkUrl: async(url)=>
+              /https:\/\/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(url)|| "Url no valida",
+               
+            
+
+          }})} placeholder="Sitio web" />
           <ErrorMessage state={formState} field="web" />
         </div>
       </GridForm>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button onClick={submit}>Guardar</Button>
       </div>
     </form>

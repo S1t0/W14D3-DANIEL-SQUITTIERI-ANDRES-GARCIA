@@ -11,7 +11,7 @@ export const ItemsList = () => {
       <button type="button" onClick={() => clear()}>
         Clear List
       </button>
-      <p>There are 0 items in the list</p>
+      <p>There are { items.length } items in the list</p>
       {items.map((e) => (
         <Item key={e.id} item={e} onDelete={() => delete_item(e.id)} />
       ))}

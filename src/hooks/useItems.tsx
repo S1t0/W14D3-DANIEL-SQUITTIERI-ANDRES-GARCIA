@@ -8,6 +8,7 @@ export const ItemsProvider: React.FC<{ children: React.Node }> = ({ children }) 
   const [items, setItems] = useState([]);
   return <ItemsContext.Provider value={{ items, setItems }}>{children}</ItemsContext.Provider>;
 };
+ 
 
 export const useItems = () => {
   const { items, setItems } = useContext(ItemsContext);

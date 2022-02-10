@@ -43,12 +43,12 @@ export const AddItemForm = () => {
   const { add_item } = useItems();
 
   const { register, handleSubmit, formState, reset } = useForm();
-
+  
   const submit = handleSubmit(async (data) => {
     add_item(data);
     reset();
   });
-
+  
   return (
     <form
       onSubmit={handleSubmit(submit)}

@@ -46,6 +46,7 @@ export const AddItemForm = () => {
 
   const submit = handleSubmit(async (data) => {
     add_item(data);
+    reset();
   });
 
   return (
